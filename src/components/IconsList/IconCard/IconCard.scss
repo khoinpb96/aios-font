@@ -1,0 +1,38 @@
+.iconCard {
+  &__content {
+    height: 100px;
+    background: #eee;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+  &__title {
+    cursor: pointer;
+    background: black;
+    color: #ddd;
+
+    padding: 0.5rem 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s, transform 50ms;
+    opacity: 0.8;
+    code {
+      font-size: 10px;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+    &:active {
+      transform: translateY(-2px);
+    }
+  }
+}
