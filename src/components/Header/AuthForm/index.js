@@ -1,49 +1,58 @@
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
 import "./AuthForm.scss";
+import { AuthContext } from "../../../context";
 
 export default function AuthForm() {
-  const formSubmitHandler = (e) => {
+  const { user, userLogin, userLogout } = useContext(AuthContext);
+
+  const loginHandler = (e) => {
     e.preventDefault();
-    console.log("submit");
+    userLogin(usernameRef.current.value, passwordRef.current.value);
+    setShowForm(false);
+    setIsAuth(true);
   };
 
+  const logoutHandler = () => {
+    userLogout();
+    setIsAuth(false);
+  };
+
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+
   const loginForm = (
-    <form onSubmit={formSubmitHandler}>
+    <form className="login-form" onSubmit={(e) => loginHandler(e)}>
       <label htmlFor="username">
         Username:
-        <input type="text" id="username" />
+        <input type="text" id="username" ref={usernameRef} />
       </label>
       <label htmlFor="password">
         Password:
-        <input type="text" id="password" />
+        <input type="text" id="password" ref={passwordRef} />
       </label>
+      <button type="submit" onClick={(e) => loginHandler(e)}>
+        Login
+      </button>
     </form>
   );
 
   const [showForm, setShowForm] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(() => user.isAuth);
+
+  console.log(user);
 
   return (
     <div>
       {!isAuth && showForm && loginForm}
-      {!isAuth && (
+      {isAuth ? (
+        <button onClick={() => logoutHandler()}>Logout</button>
+      ) : (
         <button
           onClick={() => {
-            setShowForm(true);
-            showForm && console.log("login");
+            if (!isAuth) setShowForm(true);
           }}
         >
           Login
-        </button>
-      )}
-      {isAuth && (
-        <button
-          onClick={() => {
-            setShowForm(false);
-            console.log("logout");
-          }}
-        >
-          Logout
         </button>
       )}
     </div>

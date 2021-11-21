@@ -1,0 +1,16 @@
+.languages-selector {
+  &.opened {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5rem;
+    padding: 0.4rem;
+    gap: 4px;
+  }
+
+  .language {
+    background-size: contain;
+    height: 20px;
+    width: 20px;
+    display: block;
+    border-radius: 50%;
+  }
+}

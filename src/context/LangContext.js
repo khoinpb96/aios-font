@@ -2,10 +2,10 @@ import { createContext, useState } from "react";
 const LangContext = createContext();
 
 const LangProvider = ({ children }) => {
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState("EN");
 
   const languageChange = (e) => {
-    setLanguage(e.target.value);
+    setLanguage(e);
   };
   const context = { language, languageChange };
 
