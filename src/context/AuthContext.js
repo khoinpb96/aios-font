@@ -1,25 +1,33 @@
 import { createContext, useState } from "react";
+
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const initUser = {
+  const userTemplate = {
     isAuth: false,
-    username: "there",
+    username: "",
     password: "",
   };
 
+  const initUser = JSON.parse(localStorage.getItem("user")) || userTemplate;
+
   const [user, setUser] = useState(initUser);
+  console.log(user);
 
   const userLogin = (username, password) => {
-    setUser({
+    const newUser = {
       isAuth: true,
       username,
       password,
-    });
+    };
+
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
   };
 
   const userLogout = () => {
-    setUser(initUser);
+    localStorage.removeItem("user");
+    setUser(userTemplate);
   };
 
   const context = { user, userLogin, userLogout };

@@ -296,4 +296,12 @@ const languages = [
     icon: "https://cdn.countryflags.com/thumbs/china/flag-round-250.png",
   },
 ];
-export { iconData, languages };
+
+const hellos = {
+  EN: "Hello",
+  VN: "Chào",
+  TH: "สวัสดี",
+  CN: "你好",
+};
+
+export { iconData, languages, hellos };

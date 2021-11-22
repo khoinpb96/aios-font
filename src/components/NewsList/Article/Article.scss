@@ -53,5 +53,8 @@
   .article {
     flex-direction: column;
     text-align: center;
+    &__image {
+      min-width: unset;
+    }
   }
 }

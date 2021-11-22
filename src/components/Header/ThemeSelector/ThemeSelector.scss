@@ -2,4 +2,12 @@
   input[type="checkbox"] {
     display: none;
   }
+  i {
+    transition: 0.3s;
+  }
+  &:hover {
+    i {
+      transform: scale(120%);
+    }
+  }
 }

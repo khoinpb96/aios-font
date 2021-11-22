@@ -5,17 +5,12 @@ import { LangContext } from "../../../context/LangContext";
 import "./LangSelector.scss";
 
 export default function LangSelector() {
-  const context = useContext(LangContext);
+  const { language, languageChange } = useContext(LangContext);
   const [isOpen, setIsOpen] = useState(false);
-  const currentLang = languages.find((lang) => lang.name === context.language);
-
-  console.log(context.language);
+  const currentLang = languages.find((lang) => lang.name === language);
 
   return (
-    <div
-      className={`languages-selector ${isOpen ? "opened" : ""}`}
-      style={{ display: "flex" }}
-    >
+    <div className={`languages-selector ${isOpen ? "opened" : ""}`}>
       {!isOpen ? (
         <span
           className="language"
@@ -31,7 +26,7 @@ export default function LangSelector() {
             }}
             className="language"
             onClick={() => {
-              context.languageChange(lang.name);
+              languageChange(lang.name);
               setIsOpen(false);
             }}
           />

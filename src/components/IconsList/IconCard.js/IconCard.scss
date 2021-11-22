@@ -23,6 +23,9 @@
     align-items: center;
     transition: opacity 0.3s, transform 50ms;
     opacity: 0.8;
+
+    position: relative;
+
     code {
       font-size: 10px;
       transition: 0.3s;

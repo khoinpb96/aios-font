@@ -2,12 +2,23 @@ import { createContext, useState } from "react";
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-  const [darkTheme, setDarkTheme] = useState(false);
+  const initTheme = localStorage.getItem("theme") || "dark";
+
+  const [theme, setTheme] = useState(initTheme);
 
   const themeToggle = () => {
-    setDarkTheme((theme) => !theme);
+    setTheme((prev) => {
+      if (prev === "dark") {
+        localStorage.setItem("theme", "light");
+        return "light";
+      } else {
+        localStorage.setItem("theme", "dark");
+        return "dark";
+      }
+    });
   };
-  const context = { darkTheme, themeToggle };
+
+  const context = { theme, themeToggle };
 
   return (
     <ThemeContext.Provider value={context}>{children}</ThemeContext.Provider>
